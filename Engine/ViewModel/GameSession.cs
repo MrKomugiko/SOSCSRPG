@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Engine.ViewModel
 {
-    public class GameSession : INotifyPropertyChanged
+    public class GameSession : BaseNotificationClass
     {
         private Location _currentLocation;
         public World CurrentWorld { get; set; }
@@ -20,12 +20,11 @@ namespace Engine.ViewModel
             }
             set { 
                 _currentLocation = value;
-                OnPropertyChanged("CurrentLocation");
-
-                OnPropertyChanged("HasLocationToNorth");
-                OnPropertyChanged("HasLocationToWest");
-                OnPropertyChanged("HasLocationToEast");
-                OnPropertyChanged("HasLocationToSouth");
+                OnPropertyChanged(nameof(CurrentLocation));
+                OnPropertyChanged(nameof(HasLocationToNorth));
+                OnPropertyChanged(nameof(HasLocationToWest));
+                OnPropertyChanged(nameof(HasLocationToEast));
+                OnPropertyChanged(nameof(HasLocationToSouth));
 
             }
         }
@@ -34,7 +33,7 @@ namespace Engine.ViewModel
             CurrentPlayer = new Player() {
                 Name = "Kamil",
                 CharacterClass = "Rougue",
-                HitPoint = 100,
+                HitPoints = 100,
                 ExperiencePoints = 0,
                 Level = 1,
                 Gold = 1000000
@@ -86,11 +85,5 @@ namespace Engine.ViewModel
             CurrentLocation = CurrentWorld.LocationAt(CurrentLocation.XCoordinate -1, CurrentLocation.YCoordinate);
 
         }    
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }
