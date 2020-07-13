@@ -26,8 +26,18 @@ namespace Engine.ViewModel
                 OnPropertyChanged(nameof(HasLocationToEast));
                 OnPropertyChanged(nameof(HasLocationToSouth));
 
+                GivePlayerQuestsAtLocation();
             }
         }
+
+        private void GivePlayerQuestsAtLocation() {
+           foreach(Quest quest in CurrentLocation.QuestAvailableHere) {
+                if(!CurrentPlayer.Quests.Any(q=>q.PlayerQuest.ID == quest.ID)) {
+                    CurrentPlayer.Quests.Add(new QuestStatus(quest));
+                }
+            }
+        }
+
         public GameSession() {
             CurrentPlayer = new Player() {
                 Name = "Kamil",
