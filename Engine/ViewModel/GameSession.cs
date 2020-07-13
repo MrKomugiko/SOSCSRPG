@@ -41,6 +41,8 @@ namespace Engine.ViewModel
             CurrentWorld = WorldFactory.CreateWorld();
 
             CurrentLocation = CurrentWorld.LocationAt(0, 0);
+
+         //   CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
         }
         public bool HasLocationToNorth {
             get {
