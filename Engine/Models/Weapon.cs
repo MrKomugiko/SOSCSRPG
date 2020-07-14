@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Engine.Models
 {
     public class Weapon : GameItem
+
     {
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
