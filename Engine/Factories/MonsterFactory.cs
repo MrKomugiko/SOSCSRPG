@@ -38,9 +38,10 @@ namespace Engine.Factories
                     throw new ArgumentException(string.Format("MonsterType '{0}' does not exist", monsterID));
             }
         }
+
         private static void AddLootItem(Monster monster, int itemID, int percentage) {
             if (RandomNumberGenerator.NumberBetween(1, 100) <= percentage) {
-                monster.Inventory.Add(new ItemQuantity(itemID, 1));
+                monster.AddItemToInventory(ItemFactory.CreateGameItem(itemID));
             }
         }
     }
